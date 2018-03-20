@@ -31,6 +31,20 @@ execute 'chmod' do
   action :run
 end
 
+execute 'max_map_cnt' do
+    user 'root'
+    cwd '/tmp'
+  command 'sysctl -w vm.max_map_count=262144'
+  action :run
+end
+
+execute 'dirty_expire_centisecs' do
+    user 'root'
+    cwd '/tmp'
+  command 'sysctl -w vm.dirty_expire_centisecs=20000'
+  action :run
+end
+
   bash 'create_default_config' do
     user 'root'
     cwd '/tmp'
@@ -39,10 +53,10 @@ end
     EOH
   end
 
-#   bash 'deploy_automate' do
-#     user 'root'
-#     cwd '/tmp'
-#     code <<-EOH
-#     sudo ./chef-automate deploy config.toml --skip-preflight
-#     EOH
-#   end
+  bash 'deploy_automate' do
+    user 'root'
+    cwd '/tmp'
+    code <<-EOH
+    ./chef-automate deploy config.toml
+    EOH
+  end
