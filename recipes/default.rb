@@ -53,19 +53,19 @@ end
     EOH
   end
 
-  bash 'deploy_automate' do
+bash 'deploy_automate' do
     user 'root'
     cwd '/tmp'
     code <<-EOH
     ./chef-automate deploy config.toml
     EOH
-  end
+end
 
-  bash 'get_install_tools' do
+bash 'get_install_tools' do
     user 'root'
     cwd '/tmp'
     code <<-EOH
-    wget https://s3.console.aws.amazon.com/s3/object/anthonyrees/delivery.license
+    wget https://s3-us-west-2.amazonaws.com/anthonyrees/delivery.license
     EOH
 end
 
@@ -75,6 +75,6 @@ bash 'install_license' do
     code <<-EOH
     ./chef-automate license apply delivery.license
     EOH
-  end
+end
 
 ## Now navigate to https://automate-deployment.test
