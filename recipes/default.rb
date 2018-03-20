@@ -60,3 +60,21 @@ end
     ./chef-automate deploy config.toml
     EOH
   end
+
+  bash 'get_install_tools' do
+    user 'root'
+    cwd '/tmp'
+    code <<-EOH
+    wget https://s3.console.aws.amazon.com/s3/object/anthonyrees/delivery.license
+    EOH
+end
+
+bash 'install_license' do
+    user 'root'
+    cwd '/tmp'
+    code <<-EOH
+    ./chef-automate license apply delivery.license
+    EOH
+  end
+
+## Now navigate to https://automate-deployment.test
