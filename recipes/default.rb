@@ -53,6 +53,14 @@ end
     EOH
   end
 
+bash 'remove_config' do
+    user 'root'
+    cwd '/tmp'
+    code <<-EOH
+    rm config.toml
+    EOH
+end
+
 bash 'deploy_automate' do
     user 'root'
     cwd '/tmp'
@@ -61,20 +69,5 @@ bash 'deploy_automate' do
     EOH
 end
 
-bash 'get_install_tools' do
-    user 'root'
-    cwd '/tmp'
-    code <<-EOH
-    wget https://s3-us-west-2.amazonaws.com/anthonyrees/delivery.license
-    EOH
-end
-
-bash 'install_license' do
-    user 'root'
-    cwd '/tmp'
-    code <<-EOH
-    ./chef-automate license apply delivery.license
-    EOH
-end
 
 ## Now navigate to https://automate-deployment.test
