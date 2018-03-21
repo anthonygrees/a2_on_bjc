@@ -61,6 +61,10 @@ bash 'remove_config' do
     EOH
 end
 
+template '/tmp/config.toml' do
+  source 'config.toml.erb'
+end
+
 bash 'deploy_automate' do
     user 'root'
     cwd '/tmp'
@@ -68,6 +72,5 @@ bash 'deploy_automate' do
     ./chef-automate deploy config.toml
     EOH
 end
-
 
 ## Now navigate to https://automate-deployment.test
