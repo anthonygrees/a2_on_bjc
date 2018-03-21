@@ -1,2 +1,2 @@
-## Add A2 key here
-default['a2_on_bjc']['key'] = ""
+## Add A2 license here
+default['a2_on_bjc']['license'] = ""

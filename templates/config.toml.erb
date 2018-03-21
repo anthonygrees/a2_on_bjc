@@ -6,7 +6,7 @@
   # The external fully qualified domain name.
   # When the application is deployed you should be able to access 'https://<fqdn>/'
   # to login.
-  fqdn = "<%= node['local_hostname'] %>"
+  fqdn = "<%= node['cloud']['public_hostname'] %>"
 
 # Deployment service configuration.
 [deployment.v1]
@@ -67,4 +67,4 @@ t9pVZrviypJzUm9Z8p8XRuIcHhe73IHUIDIQO007Ea638Q==
   [license_control.v1.svc]
     # The Chef Software provided license token required to run Chef Automate.
     # This can also be set with the "chef-automate license apply" command.
-    license = "<%= node['a2_on_bjc']['key'] %> "
+    license = "<%= node['a2_on_bjc']['license'] %>"
